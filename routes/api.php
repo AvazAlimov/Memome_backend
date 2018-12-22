@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Middleware\CheckAccount;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -22,5 +23,9 @@ Route::prefix('/v1')->group(function () {
     Route::prefix('/accounts')->group(function () {
         Route::post('/signup', "AccountsController@signup");
         Route::post('/signin', "AccountsController@signin");
+    });
+
+    Route::prefix('/memories')->group(function () {
+        Route::post('/create', "MemoriesController@create")->middleware(CheckAccount::class);
     });
 });
