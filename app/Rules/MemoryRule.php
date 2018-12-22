@@ -2,10 +2,10 @@
 
 namespace App\Rules;
 
-use App\Account;
+use App\Memory;
 use Illuminate\Contracts\Validation\Rule;
 
-class AccountRule implements Rule
+class MemoryRule implements Rule
 {
     /**
      * Create a new rule instance.
@@ -26,8 +26,8 @@ class AccountRule implements Rule
      */
     public function passes($attribute, $value)
     {
-        $account = Account::find($value);
-        if (!$account) {
+        $memory = Memory::find($value);
+        if (!$memory) {
             return false;
         }
         return true;
@@ -40,6 +40,6 @@ class AccountRule implements Rule
      */
     public function message()
     {
-        return 'Memory not found';
+        return 'The validation error message.';
     }
 }

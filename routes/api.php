@@ -27,6 +27,7 @@ Route::prefix('/v1')->group(function () {
 
     Route::prefix('/memories')->group(function () {
         Route::post('/create', "MemoriesController@create")->middleware(CheckAccount::class);
+        Route::post('/update', "MemoriesController@update")->middleware(CheckAccount::class);
         Route::post('/get', "MemoriesController@get")->middleware(CheckAccount::class);
     });
 });
