@@ -46,4 +46,13 @@ class MemoriesController extends Controller
         $memory->normalize();
         return response()->json($memory, 200);
     }
+
+    public function get(Request $request)
+    {
+        $memories = Memory::where('account', $request->get('account'))->get();
+        foreach ($memories as $memory) {
+            $memory->normalize();
+        }
+        return response()->json($memories, 200);
+    }
 }
