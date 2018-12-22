@@ -92,4 +92,17 @@ class MemoriesController extends Controller
         }
         return response()->json($memories, 200);
     }
+
+    public function delete(Request $request)
+    {
+        $validation = Validator::make($request->all(), [
+            "id" => ["required", new MemoryRule],
+            "account" => ["required", new AccountRule]
+        ]);
+        if ($validation->fails()) {
+            return response()->json($validation->errors(), 400);
+        }
+        Memory::destroy($request->get("id"));
+        return response()->json([], 200);
+    }
 }
